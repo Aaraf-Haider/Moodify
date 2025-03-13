@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block body %}
+
+     <h1 style= "color: rgb(92, 122, 50); text-align: center;"> WELCOME TO MOODIFY</h1>
+     <h3 style="margin-top: 20px;  color: rgb(92, 122, 50)" >How are you feeling right now?</h3>
+
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"><a href="/happy" type="button" class="btn btn-outline-dark">Happy</button></th>
+            <th scope="col"><a href="/sad" type="button" class="btn btn-outline-dark">Sad</button></th>
+            <th scope="col"><a href="/energetic" type="button" class="btn btn-outline-dark">Energetic</button></th>
+            <th scope="col"><a href="/chill" type="button" class="btn btn-outline-dark">Chill</button></th>
+          </tr>
+        </thead>
+      </table>
+      <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S.No</th> 
+                <th scope="col">Song Name</th>
+                <th scope="col">Singer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in songs %}
+            <tr>
+                <td>{{ loop.index }}</td>  <!-- Auto-incrementing row number -->
+                <td>{{ song.name }}</td>    <!-- Display song name -->
+                <td>
+                    {% for artist in artists %}
+                        {% if artist.artist_id == song.artist_id %} 
+                            {{ artist.artist_name }}  <!-- Match artist ID with song's artist_id -->
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+{% endblock body %}
